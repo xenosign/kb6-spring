@@ -2,20 +2,27 @@ package org.example.kb6spring.service.member;
 
 import org.example.kb6spring.domain.member.MemberEntity;
 import org.example.kb6spring.dto.member.MemberDto;
+import org.example.kb6spring.repository.member.MemberRepositoryV0;
 import org.example.kb6spring.repository.member.MemberRepositoryV1;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
-public class MemberServiceV1 {
-    private final MemberRepositoryV1 memberRepository;
+public class MemberServiceV0 {
+    private static MemberServiceV0 instance;
+    private final MemberRepositoryV0 memberRepository;
 
-    @Autowired
-    public MemberServiceV1(MemberRepositoryV1 memberRepository) {
-        this.memberRepository = memberRepository;
+    public MemberServiceV0() {
+        this.memberRepository = MemberRepositoryV0.getInstance();
+    }
+
+    public static MemberServiceV0 getInstance() {
+        if (instance == null) {
+            instance = new MemberServiceV0();
+        }
+
+        return instance;
     }
 
     public List<MemberDto> getMemberList() {
@@ -30,17 +37,5 @@ public class MemberServiceV1 {
         }
 
         return dtoList;
-    }
-
-    public void addMember(String name, String email) {
-        MemberEntity newMember = new MemberEntity();
-
-        newMember.setName(name);
-        newMember.setEmail(email);
-
-        newMember.setGrade("아이언");
-        newMember.setAsset(100L);
-
-        memberRepository.save(newMember);
     }
 }

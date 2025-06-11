@@ -1,4 +1,4 @@
-package org.example.kb6spring.controller.member;
+package org.example.kb6spring.controller.member.v1;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

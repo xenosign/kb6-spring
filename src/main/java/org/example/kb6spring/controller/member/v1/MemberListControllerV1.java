@@ -1,14 +1,10 @@
-package org.example.kb6spring.controller.member;
+package org.example.kb6spring.controller.member.v1;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.kb6spring.domain.member.MemberEntity;
 import org.example.kb6spring.service.member.MemberServiceV1;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @Slf4j

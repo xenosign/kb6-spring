@@ -21,18 +21,18 @@ public class MemberControllerV2 {
     @GetMapping("")
     public String memberHome() {
         log.info("=======> '/member', member/index.jsp");
-        return "member/index";
+        return "member/v2/index";
     }
 
     @GetMapping("/list")
     public String memberList(Model model) {
         model.addAttribute("memberList", memberService.getMemberList());
-        return "member/list";
+        return "member/v2/list";
     }
 
     @GetMapping("/add")
     public String addMemberPage() {
-        return "member/add";
+        return "member/v2/add";
     }
 
     @PostMapping("/add")
@@ -40,6 +40,6 @@ public class MemberControllerV2 {
         log.info("name={}, email={}", name, email);
         memberService.addMember(name, email);
 
-        return "redirect:/member/list";
+        return "redirect:/member/v2/list";
     }
 }

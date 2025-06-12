@@ -4,6 +4,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -17,6 +18,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @PropertySource({"classpath:/application.properties"})
+@MapperScan(basePackages = {"org.example.kb6spring.mapper"})
 @ComponentScan(basePackages = {"org.example.kb6spring"})
 public class RootConfig {
     @Value("${jdbc.driver}") String driver;
@@ -38,19 +40,19 @@ public class RootConfig {
     @Autowired
     ApplicationContext applicationContext;
 
-//    @Bean
-//    public SqlSessionFactory sqlSessionFactory() throws Exception {
-//        SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
-//        sqlSessionFactory.setConfigLocation(
-//                applicationContext.getResource("classpath:/mybatis-config.xml"));
-//        sqlSessionFactory.setDataSource(dataSource());
-//        return (SqlSessionFactory) sqlSessionFactory.getObject();
-//    }
-//
-//    @Bean
-//    public DataSourceTransactionManager transactionManager(){
-//        DataSourceTransactionManager manager = new DataSourceTransactionManager(dataSource());
-//        return manager;
-//    }
+    @Bean
+    public SqlSessionFactory sqlSessionFactory() throws Exception {
+        SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
+        sqlSessionFactory.setConfigLocation(
+                applicationContext.getResource("classpath:/mybatis-config.xml"));
+        sqlSessionFactory.setDataSource(dataSource());
+        return (SqlSessionFactory) sqlSessionFactory.getObject();
+    }
+
+    @Bean
+    public DataSourceTransactionManager transactionManager(){
+        DataSourceTransactionManager manager = new DataSourceTransactionManager(dataSource());
+        return manager;
+    }
 }
 

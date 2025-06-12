@@ -1,27 +1,30 @@
-package org.example.kb6spring.repository.member;
+package org.example.kb6spring.repository.member.v1;
 
 import org.example.kb6spring.domain.member.MemberEntity;
-import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
-public class MemberRepositoryV1 {
-    private final List<MemberEntity> memberList = new ArrayList<>();
+public class MemberRepositoryV0 {
+    private static MemberRepositoryV0 instance;
 
-    public MemberRepositoryV1() {
-        memberList.add(new MemberEntity(1L, "ronaldo@example.com", "호날두", "플래티넘", 300000000L));
-        memberList.add(new MemberEntity(2L, "sjk@example.com", "송중기", "골드", 3000000L));
-        memberList.add(new MemberEntity(3L, "xenosign@example.com", "이효석", "아이언", 10L));
+    private MemberRepositoryV0() {}
+
+    public static MemberRepositoryV0 getInstance() {
+        if (instance == null) {
+            instance = new MemberRepositoryV0();
+        }
+
+        return instance;
     }
 
     public List<MemberEntity> getMemberList() {
-        return memberList;
-    }
+        List<MemberEntity> memberList = new ArrayList<>();
 
-    public void save(MemberEntity member) {
-        member.setId((long) (memberList.size() + 1));
-        memberList.add(member);
+        memberList.add(new MemberEntity(1L, "ronaldo@example.com", "호날두", "플래티넘", 300000000L));
+        memberList.add(new MemberEntity(2L, "sjk@example.com", "송중기", "골드", 3000000L));
+        memberList.add(new MemberEntity(3L, "xenosign@example.com", "이효석", "아이언", 10L));
+
+        return memberList;
     }
 }

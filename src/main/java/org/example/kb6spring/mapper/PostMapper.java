@@ -11,4 +11,10 @@ public interface PostMapper {
     List<PostDto> findAll();
 
     int delete(@Param("id") int id);
+
+    List<PostDto> findByCond(@Param("title") String title, @Param("content") String content);
+
+    void deleteAll();
+    int saveForTest(PostDto post);
+    PostDto findById(@Param("id") int id);
 }

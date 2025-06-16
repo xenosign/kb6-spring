@@ -38,4 +38,38 @@ public class PostController {
 
         return "redirect:/post/v1/list";
     }
+
+    @GetMapping("/search")
+    public String postSearch(@RequestParam("title") String title,
+                             @RequestParam("content") String content,
+                             Model model) {
+        log.info("==============> 게시글 검색 기능 호출, /post/v1/search");
+
+        model.addAttribute("postList", postService.findByCond(title, content));
+
+        return "post/list";
+    }
+
+    @GetMapping("/compare")
+    public String compare(Model model) {
+        log.info("==================> DB 비교 기능 호출, /post/v1/compare");
+
+        int count = 1000;
+
+        postService.resetAndGeneratePosts(count);
+
+        model.addAttribute("count", count);
+        model.addAttribute("mysqlTime", postService.testMysqlReadTime(count));
+        model.addAttribute("redisTime", postService.testRedisReadTime(count));
+
+        return "post/compare";
+    }
+
+
+
+
+
+
+
+
 }

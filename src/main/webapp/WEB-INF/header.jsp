@@ -14,4 +14,8 @@
   <a href="/">Home</a>
   <a href="/post/v1/list">게시판</a>
   <a href="post/v1/compare">DB 속도 비교</a>
+
+  <h3>게시판 V2</h3>
+  <a href="/">Home</a>
+  <a href="/post/v2/list">REST API 게시글</a>
 </div>

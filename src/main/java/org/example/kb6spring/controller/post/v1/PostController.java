@@ -1,8 +1,7 @@
-package org.example.kb6spring.controller.post;
+package org.example.kb6spring.controller.post.v1;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
 import org.example.kb6spring.service.post.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

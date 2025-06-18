@@ -1,5 +1,8 @@
 package org.example.kb6spring.controller.post.v3;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.kb6spring.dto.post.PostDto;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+@Api(tags = "게시판 REST 컨트롤러")
 @RestController
 @RequiredArgsConstructor
 @Slf4j
@@ -20,6 +24,7 @@ import java.util.List;
 public class RestPostControllerV3 {
     private final PostService postService;
 
+    @ApiOperation(value = "전체 게시글 조회", notes = "전체 게시글 조회 API")
     @GetMapping("/list")
     public ResponseEntity<List<PostDto>> list(HttpServletRequest request) {
         log.info("=========> 게시글 목록 페이지 호출, {}", request.getRequestURI());
@@ -34,8 +39,12 @@ public class RestPostControllerV3 {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
+    @ApiOperation(value = "게시글 삭제", notes = "게시글 삭제 API")
     @PostMapping("/delete")
-    public ResponseEntity<String> delete(@RequestParam("id") int id) {
+    public ResponseEntity<String> delete(
+            @ApiParam(value = "게시글 ID", required = true, example = "1")
+            @RequestParam("id") int id
+    ) {
         log.info("=========> 게시글 삭제 기능 호출", "/post/v1/delete");
 
         try {

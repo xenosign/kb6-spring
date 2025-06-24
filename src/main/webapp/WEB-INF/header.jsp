@@ -20,4 +20,16 @@
   <h3>게시판 V2</h3>
   <a href="/">Home</a>
   <a href="/post/v2/list">REST API 게시글</a>
+
+  <h3>시큐리티 V1</h3>
+  <a href="/">Home</a>
+  <a href="/user/register">회원 가입</a>
+  <a href="/user/login">로그인</a>
+  <a href="/admin">어드민</a>
+  <a href="/member">멤버</a>
+  <a href="#" onclick="document.getElementById('logout-form').submit();">로그아웃</a>
+  <form id="logout-form" action="/user/logout" method="post" style="display: none;">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+  </form>
+
 </div>

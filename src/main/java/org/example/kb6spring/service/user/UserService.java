@@ -18,7 +18,7 @@ public class UserService {
     private final BCryptPasswordEncoder passwordEncoder;
 
     public void save(User user) {
-        user.setRole("ROLE_MEMBER");
+        user.setRole(user.getRole());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
